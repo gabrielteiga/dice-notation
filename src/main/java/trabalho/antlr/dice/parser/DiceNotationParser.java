@@ -4,11 +4,14 @@ package trabalho.antlr.dice.parser;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
 import trabalho.antlr.dice.parser.listener.DiceNotationParserListener;
 import trabalho.antlr.dice.parser.visitor.DiceNotationParserVisitor;
 
 import java.util.List;
+import java.util.Iterator;
+import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue", "this-escape"})
 public class DiceNotationParser extends Parser {
@@ -19,27 +22,28 @@ public class DiceNotationParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		DSEPARATOR=1, DIGIT=2, ADDOPERATOR=3, MULTOPERATOR=4, LPAREN=5, RPAREN=6, 
-		WS=7;
+		WS=7, AUTH=8;
 	public static final int
 		RULE_file_ = 0, RULE_notation = 1, RULE_addOp = 2, RULE_multOp = 3, RULE_operand = 4, 
-		RULE_dice = 5, RULE_number = 6;
+		RULE_dice = 5, RULE_number = 6, RULE_authentication = 7;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"file_", "notation", "addOp", "multOp", "operand", "dice", "number"
+			"file_", "notation", "addOp", "multOp", "operand", "dice", "number", 
+			"authentication"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, null, null, null, null, "'('", "')'"
+			null, null, null, null, null, "'('", "')'", null, "'YXV0aGVudGljYXRlZA=='"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, "DSEPARATOR", "DIGIT", "ADDOPERATOR", "MULTOPERATOR", "LPAREN", 
-			"RPAREN", "WS"
+			"RPAREN", "WS", "AUTH"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -98,6 +102,9 @@ public class DiceNotationParser extends Parser {
 		public NotationContext notation() {
 			return getRuleContext(NotationContext.class,0);
 		}
+		public AuthenticationContext authentication() {
+			return getRuleContext(AuthenticationContext.class,0);
+		}
 		public TerminalNode EOF() { return getToken(DiceNotationParser.EOF, 0); }
 		public File_Context(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -113,7 +120,7 @@ public class DiceNotationParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof DiceNotationParserVisitor) return ((DiceNotationParserVisitor<? extends T>)visitor).visitFile_(this);
+			if ( visitor instanceof DiceNotationParserVisitor ) return ((DiceNotationParserVisitor<? extends T>)visitor).visitFile_(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -124,11 +131,12 @@ public class DiceNotationParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(14);
+			setState(16);
 			notation();
-			setState(15);
+			setState(17);
+			authentication();
+			setState(18);
 			match(EOF);
-			    
 			}
 		}
 		catch (RecognitionException re) {
@@ -167,7 +175,7 @@ public class DiceNotationParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof DiceNotationParserVisitor ) return ((DiceNotationParserVisitor<? extends T>)visitor).visitNotation(this);
+			if ( visitor instanceof DiceNotationParserVisitor<? extends T>) return ((DiceNotationParserVisitor<? extends T>)visitor).visitNotation(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -176,27 +184,27 @@ public class DiceNotationParser extends Parser {
 		NotationContext _localctx = new NotationContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_notation);
 		try {
-			setState(21);
+			setState(23);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(18);
+				setState(20);
 				dice();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(19);
+				setState(21);
 				number();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(20);
+				setState(22);
 				addOp();
 				}
 				break;
@@ -251,21 +259,21 @@ public class DiceNotationParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(23);
+			setState(25);
 			multOp();
-			setState(28);
+			setState(30);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==ADDOPERATOR) {
 				{
 				{
-				setState(24);
+				setState(26);
 				match(ADDOPERATOR);
-				setState(25);
+				setState(27);
 				multOp();
 				}
 				}
-				setState(30);
+				setState(32);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -320,21 +328,21 @@ public class DiceNotationParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(31);
+			setState(33);
 			operand();
-			setState(36);
+			setState(38);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==MULTOPERATOR) {
 				{
 				{
-				setState(32);
+				setState(34);
 				match(MULTOPERATOR);
-				setState(33);
+				setState(35);
 				operand();
 				}
 				}
-				setState(38);
+				setState(40);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -387,31 +395,31 @@ public class DiceNotationParser extends Parser {
 		OperandContext _localctx = new OperandContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_operand);
 		try {
-			setState(45);
+			setState(47);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(39);
+				setState(41);
 				dice();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(40);
+				setState(42);
 				number();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(41);
-				match(LPAREN);
-				setState(42);
-				notation();
 				setState(43);
+				match(LPAREN);
+				setState(44);
+				notation();
+				setState(45);
 				match(RPAREN);
 				}
 				break;
@@ -462,29 +470,29 @@ public class DiceNotationParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(48);
+			setState(50);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==ADDOPERATOR) {
 				{
-				setState(47);
+				setState(49);
 				match(ADDOPERATOR);
 				}
 			}
 
-			setState(51);
+			setState(53);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==DIGIT) {
 				{
-				setState(50);
+				setState(52);
 				match(DIGIT);
 				}
 			}
 
-			setState(53);
+			setState(55);
 			match(DSEPARATOR);
-			setState(54);
+			setState(56);
 			match(DIGIT);
 			}
 		}
@@ -529,17 +537,17 @@ public class DiceNotationParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(57);
+			setState(59);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==ADDOPERATOR) {
 				{
-				setState(56);
+				setState(58);
 				match(ADDOPERATOR);
 				}
 			}
 
-			setState(59);
+			setState(61);
 			match(DIGIT);
 			}
 		}
@@ -554,45 +562,90 @@ public class DiceNotationParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
+	public static class AuthenticationContext extends ParserRuleContext {
+		public TerminalNode AUTH() { return getToken(DiceNotationParser.AUTH, 0); }
+		public AuthenticationContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_authentication; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof DiceNotationParserListener ) ((DiceNotationParserListener)listener).enterAuthentication(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof DiceNotationParserListener ) ((DiceNotationParserListener)listener).exitAuthentication(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DiceNotationParserVisitor ) return ((DiceNotationParserVisitor<? extends T>)visitor).visitAuthentication(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final AuthenticationContext authentication() throws RecognitionException {
+		AuthenticationContext _localctx = new AuthenticationContext(_ctx, getState());
+		enterRule(_localctx, 14, RULE_authentication);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(63);
+			match(AUTH);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
 	public static final String _serializedATN =
-		"\u0004\u0001\u0007>\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001\bB\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
-		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0001\u0000\u0001\u0000\u0001"+
-		"\u0000\u0001\u0000\u0001\u0001\u0001\u0001\u0001\u0001\u0003\u0001\u0016"+
-		"\b\u0001\u0001\u0002\u0001\u0002\u0001\u0002\u0005\u0002\u001b\b\u0002"+
-		"\n\u0002\f\u0002\u001e\t\u0002\u0001\u0003\u0001\u0003\u0001\u0003\u0005"+
-		"\u0003#\b\u0003\n\u0003\f\u0003&\t\u0003\u0001\u0004\u0001\u0004\u0001"+
-		"\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0003\u0004.\b\u0004\u0001"+
-		"\u0005\u0003\u00051\b\u0005\u0001\u0005\u0003\u00054\b\u0005\u0001\u0005"+
-		"\u0001\u0005\u0001\u0005\u0001\u0006\u0003\u0006:\b\u0006\u0001\u0006"+
-		"\u0001\u0006\u0001\u0006\u0000\u0000\u0007\u0000\u0002\u0004\u0006\b\n"+
-		"\f\u0000\u0000?\u0000\u000e\u0001\u0000\u0000\u0000\u0002\u0015\u0001"+
-		"\u0000\u0000\u0000\u0004\u0017\u0001\u0000\u0000\u0000\u0006\u001f\u0001"+
-		"\u0000\u0000\u0000\b-\u0001\u0000\u0000\u0000\n0\u0001\u0000\u0000\u0000"+
-		"\f9\u0001\u0000\u0000\u0000\u000e\u000f\u0003\u0002\u0001\u0000\u000f"+
-		"\u0010\u0005\u0000\u0000\u0001\u0010\u0011\u0006\u0000\uffff\uffff\u0000"+
-		"\u0011\u0001\u0001\u0000\u0000\u0000\u0012\u0016\u0003\n\u0005\u0000\u0013"+
-		"\u0016\u0003\f\u0006\u0000\u0014\u0016\u0003\u0004\u0002\u0000\u0015\u0012"+
-		"\u0001\u0000\u0000\u0000\u0015\u0013\u0001\u0000\u0000\u0000\u0015\u0014"+
-		"\u0001\u0000\u0000\u0000\u0016\u0003\u0001\u0000\u0000\u0000\u0017\u001c"+
-		"\u0003\u0006\u0003\u0000\u0018\u0019\u0005\u0003\u0000\u0000\u0019\u001b"+
-		"\u0003\u0006\u0003\u0000\u001a\u0018\u0001\u0000\u0000\u0000\u001b\u001e"+
-		"\u0001\u0000\u0000\u0000\u001c\u001a\u0001\u0000\u0000\u0000\u001c\u001d"+
-		"\u0001\u0000\u0000\u0000\u001d\u0005\u0001\u0000\u0000\u0000\u001e\u001c"+
-		"\u0001\u0000\u0000\u0000\u001f$\u0003\b\u0004\u0000 !\u0005\u0004\u0000"+
-		"\u0000!#\u0003\b\u0004\u0000\" \u0001\u0000\u0000\u0000#&\u0001\u0000"+
-		"\u0000\u0000$\"\u0001\u0000\u0000\u0000$%\u0001\u0000\u0000\u0000%\u0007"+
-		"\u0001\u0000\u0000\u0000&$\u0001\u0000\u0000\u0000\'.\u0003\n\u0005\u0000"+
-		"(.\u0003\f\u0006\u0000)*\u0005\u0005\u0000\u0000*+\u0003\u0002\u0001\u0000"+
-		"+,\u0005\u0006\u0000\u0000,.\u0001\u0000\u0000\u0000-\'\u0001\u0000\u0000"+
-		"\u0000-(\u0001\u0000\u0000\u0000-)\u0001\u0000\u0000\u0000.\t\u0001\u0000"+
-		"\u0000\u0000/1\u0005\u0003\u0000\u00000/\u0001\u0000\u0000\u000001\u0001"+
-		"\u0000\u0000\u000013\u0001\u0000\u0000\u000024\u0005\u0002\u0000\u0000"+
-		"32\u0001\u0000\u0000\u000034\u0001\u0000\u0000\u000045\u0001\u0000\u0000"+
-		"\u000056\u0005\u0001\u0000\u000067\u0005\u0002\u0000\u00007\u000b\u0001"+
-		"\u0000\u0000\u00008:\u0005\u0003\u0000\u000098\u0001\u0000\u0000\u0000"+
-		"9:\u0001\u0000\u0000\u0000:;\u0001\u0000\u0000\u0000;<\u0005\u0002\u0000"+
-		"\u0000<\r\u0001\u0000\u0000\u0000\u0007\u0015\u001c$-039";
+		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0001"+
+		"\u0000\u0001\u0000\u0001\u0000\u0001\u0000\u0001\u0001\u0001\u0001\u0001"+
+		"\u0001\u0003\u0001\u0018\b\u0001\u0001\u0002\u0001\u0002\u0001\u0002\u0005"+
+		"\u0002\u001d\b\u0002\n\u0002\f\u0002 \t\u0002\u0001\u0003\u0001\u0003"+
+		"\u0001\u0003\u0005\u0003%\b\u0003\n\u0003\f\u0003(\t\u0003\u0001\u0004"+
+		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0003\u0004"+
+		"0\b\u0004\u0001\u0005\u0003\u00053\b\u0005\u0001\u0005\u0003\u00056\b"+
+		"\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0006\u0003\u0006<\b"+
+		"\u0006\u0001\u0006\u0001\u0006\u0001\u0007\u0001\u0007\u0001\u0007\u0000"+
+		"\u0000\b\u0000\u0002\u0004\u0006\b\n\f\u000e\u0000\u0000B\u0000\u0010"+
+		"\u0001\u0000\u0000\u0000\u0002\u0017\u0001\u0000\u0000\u0000\u0004\u0019"+
+		"\u0001\u0000\u0000\u0000\u0006!\u0001\u0000\u0000\u0000\b/\u0001\u0000"+
+		"\u0000\u0000\n2\u0001\u0000\u0000\u0000\f;\u0001\u0000\u0000\u0000\u000e"+
+		"?\u0001\u0000\u0000\u0000\u0010\u0011\u0003\u0002\u0001\u0000\u0011\u0012"+
+		"\u0003\u000e\u0007\u0000\u0012\u0013\u0005\u0000\u0000\u0001\u0013\u0001"+
+		"\u0001\u0000\u0000\u0000\u0014\u0018\u0003\n\u0005\u0000\u0015\u0018\u0003"+
+		"\f\u0006\u0000\u0016\u0018\u0003\u0004\u0002\u0000\u0017\u0014\u0001\u0000"+
+		"\u0000\u0000\u0017\u0015\u0001\u0000\u0000\u0000\u0017\u0016\u0001\u0000"+
+		"\u0000\u0000\u0018\u0003\u0001\u0000\u0000\u0000\u0019\u001e\u0003\u0006"+
+		"\u0003\u0000\u001a\u001b\u0005\u0003\u0000\u0000\u001b\u001d\u0003\u0006"+
+		"\u0003\u0000\u001c\u001a\u0001\u0000\u0000\u0000\u001d \u0001\u0000\u0000"+
+		"\u0000\u001e\u001c\u0001\u0000\u0000\u0000\u001e\u001f\u0001\u0000\u0000"+
+		"\u0000\u001f\u0005\u0001\u0000\u0000\u0000 \u001e\u0001\u0000\u0000\u0000"+
+		"!&\u0003\b\u0004\u0000\"#\u0005\u0004\u0000\u0000#%\u0003\b\u0004\u0000"+
+		"$\"\u0001\u0000\u0000\u0000%(\u0001\u0000\u0000\u0000&$\u0001\u0000\u0000"+
+		"\u0000&\'\u0001\u0000\u0000\u0000\'\u0007\u0001\u0000\u0000\u0000(&\u0001"+
+		"\u0000\u0000\u0000)0\u0003\n\u0005\u0000*0\u0003\f\u0006\u0000+,\u0005"+
+		"\u0005\u0000\u0000,-\u0003\u0002\u0001\u0000-.\u0005\u0006\u0000\u0000"+
+		".0\u0001\u0000\u0000\u0000/)\u0001\u0000\u0000\u0000/*\u0001\u0000\u0000"+
+		"\u0000/+\u0001\u0000\u0000\u00000\t\u0001\u0000\u0000\u000013\u0005\u0003"+
+		"\u0000\u000021\u0001\u0000\u0000\u000023\u0001\u0000\u0000\u000035\u0001"+
+		"\u0000\u0000\u000046\u0005\u0002\u0000\u000054\u0001\u0000\u0000\u0000"+
+		"56\u0001\u0000\u0000\u000067\u0001\u0000\u0000\u000078\u0005\u0001\u0000"+
+		"\u000089\u0005\u0002\u0000\u00009\u000b\u0001\u0000\u0000\u0000:<\u0005"+
+		"\u0003\u0000\u0000;:\u0001\u0000\u0000\u0000;<\u0001\u0000\u0000\u0000"+
+		"<=\u0001\u0000\u0000\u0000=>\u0005\u0002\u0000\u0000>\r\u0001\u0000\u0000"+
+		"\u0000?@\u0005\b\u0000\u0000@\u000f\u0001\u0000\u0000\u0000\u0007\u0017"+
+		"\u001e&/25;";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

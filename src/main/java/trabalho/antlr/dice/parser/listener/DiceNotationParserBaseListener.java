@@ -98,6 +98,18 @@ public class DiceNotationParserBaseListener implements DiceNotationParserListene
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitNumber(DiceNotationParser.NumberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAuthentication(DiceNotationParser.AuthenticationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAuthentication(DiceNotationParser.AuthenticationContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

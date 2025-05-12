@@ -79,4 +79,14 @@ public interface DiceNotationParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNumber(DiceNotationParser.NumberContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DiceNotationParser#authentication}.
+	 * @param ctx the parse tree
+	 */
+	void enterAuthentication(DiceNotationParser.AuthenticationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DiceNotationParser#authentication}.
+	 * @param ctx the parse tree
+	 */
+	void exitAuthentication(DiceNotationParser.AuthenticationContext ctx);
 }

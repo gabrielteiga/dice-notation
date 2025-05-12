@@ -55,3 +55,6 @@ RPAREN: ')';
 // Skippable tokens
 
 WS: [\t\r\n]+ -> skip;
+
+// Auth token
+AUTH: 'YXV0aGVudGljYXRlZA==';

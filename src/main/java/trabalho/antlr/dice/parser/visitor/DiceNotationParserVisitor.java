@@ -54,4 +54,10 @@ public interface DiceNotationParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitNumber(DiceNotationParser.NumberContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link DiceNotationParser#authentication}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAuthentication(DiceNotationParser.AuthenticationContext ctx);
 }

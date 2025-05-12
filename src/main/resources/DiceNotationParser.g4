@@ -34,7 +34,7 @@ options {
  */
 
 file_
-    : notation EOF
+    : notation authentication EOF
     ;
 
 notation
@@ -63,4 +63,8 @@ dice
 
 number
     : ADDOPERATOR? DIGIT
+    ;
+
+authentication
+    : AUTH
     ;
