@@ -1,5 +1,6 @@
 package trabalho.antlr.dice.parser.visitor;
 
+import trabalho.antlr.dice.app.Config;
 import trabalho.antlr.dice.parser.DiceNotationParser;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -17,9 +18,6 @@ public class DiceEvaluator extends DiceNotationParserBaseVisitor<Integer> {
             String op   = ctx.ADDOPERATOR(i - 1).getText();
             int rhs     = visit(ctx.multOp(i));
             acc         = op.equals("+") ? acc + rhs : acc - rhs;
-            System.out.println(op);
-            System.out.println(rhs);
-            System.out.println(acc);
         }
         return acc;
     }
@@ -42,16 +40,18 @@ public class DiceEvaluator extends DiceNotationParserBaseVisitor<Integer> {
         boolean neg = txt.startsWith("-");
 
         txt = txt.replaceFirst("^[+-]", "");
-
         String[] parts = txt.split("[dD]");
-        int count = parts[0].isEmpty() ? 1 : Integer.parseInt(parts[0]);
+        int dicesCount = parts[0].isEmpty() ? 1 : Integer.parseInt(parts[0]);
         int sides = Integer.parseInt(parts[1]);
 
         int sum = 0;
-        for (int i = 0; i < count; i++) {
-            sum += ThreadLocalRandom
+        for (int i = 0; i < dicesCount; i++) {
+            int num = ThreadLocalRandom
                     .current()
                     .nextInt(1, sides + 1);
+            if (Config.DEBUG)
+                System.out.println("somando: " + num);
+            sum += num;
         }
         return neg ? -sum : sum;
     }

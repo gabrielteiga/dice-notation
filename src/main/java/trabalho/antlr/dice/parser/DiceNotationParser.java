@@ -128,8 +128,6 @@ public class DiceNotationParser extends Parser {
 			notation();
 			setState(15);
 			match(EOF);
-
-			        System.out.println("Hello there!");
 			    
 			}
 		}
