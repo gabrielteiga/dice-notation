@@ -5,6 +5,9 @@ import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
+import trabalho.antlr.dice.parser.listener.DiceNotationParserListener;
+import trabalho.antlr.dice.parser.visitor.DiceNotationParserVisitor;
+
 import java.util.List;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue", "this-escape"})
@@ -102,7 +105,7 @@ public class DiceNotationParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_file_; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof DiceNotationParserListener ) ((DiceNotationParserListener)listener).enterFile_(this);
+			if ( listener instanceof DiceNotationParserListener) ((DiceNotationParserListener)listener).enterFile_(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
@@ -110,7 +113,7 @@ public class DiceNotationParser extends Parser {
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof DiceNotationParserVisitor ) return ((DiceNotationParserVisitor<? extends T>)visitor).visitFile_(this);
+			if ( visitor instanceof DiceNotationParserVisitor) return ((DiceNotationParserVisitor<? extends T>)visitor).visitFile_(this);
 			else return visitor.visitChildren(this);
 		}
 	}

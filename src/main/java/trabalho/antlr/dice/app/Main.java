@@ -13,6 +13,7 @@ public class Main {
         DiceNotationParser parser = new DiceNotationParser(tokens);
 
         ParseTree tree = parser.file_();
+        System.out.println(tree.getText());
         System.out.println(tree.toStringTree(parser));
     }
-} 
+}

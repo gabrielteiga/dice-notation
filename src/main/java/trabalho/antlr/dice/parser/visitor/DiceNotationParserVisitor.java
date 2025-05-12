@@ -1,4 +1,4 @@
-package trabalho.antlr.dice.parser;
+package trabalho.antlr.dice.parser.visitor;
 
 // Generated from DiceNotationParser.g4 by ANTLR 4.13.2
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;

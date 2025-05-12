@@ -1,4 +1,4 @@
-package trabalho.antlr.dice.parser;
+package trabalho.antlr.dice.parser.listener;
 
 // Generated from DiceNotationParser.g4 by ANTLR 4.13.2
 
