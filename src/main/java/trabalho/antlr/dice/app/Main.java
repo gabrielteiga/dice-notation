@@ -1,5 +1,9 @@
+package trabalho.antlr.dice.app;
+
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
+import trabalho.antlr.dice.lexer.DiceNotationLexer;
+import trabalho.antlr.dice.parser.DiceNotationParser;
 
 public class Main {
     public static void main(String[] args) throws Exception {

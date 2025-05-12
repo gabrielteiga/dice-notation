@@ -1,5 +1,8 @@
+package trabalho.antlr.dice.parser;
+
 // Generated from DiceNotationParser.g4 by ANTLR 4.13.2
 import org.antlr.v4.runtime.tree.ParseTreeListener;
+import trabalho.antlr.dice.parser.DiceNotationParser;
 
 /**
  * This interface defines a complete listener for a parse tree produced by

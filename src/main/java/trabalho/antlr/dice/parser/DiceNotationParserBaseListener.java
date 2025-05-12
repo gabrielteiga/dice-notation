@@ -1,8 +1,11 @@
+package trabalho.antlr.dice.parser;
+
 // Generated from DiceNotationParser.g4 by ANTLR 4.13.2
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
+import trabalho.antlr.dice.parser.DiceNotationParser;
 
 /**
  * This class provides an empty implementation of {@link DiceNotationParserListener},

@@ -1,12 +1,11 @@
+package trabalho.antlr.dice.parser;
+
 // Generated from DiceNotationParser.g4 by ANTLR 4.13.2
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
 import java.util.List;
-import java.util.Iterator;
-import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue", "this-escape"})
 public class DiceNotationParser extends Parser {
@@ -109,6 +108,11 @@ public class DiceNotationParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DiceNotationParserListener ) ((DiceNotationParserListener)listener).exitFile_(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DiceNotationParserVisitor ) return ((DiceNotationParserVisitor<? extends T>)visitor).visitFile_(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final File_Context file_() throws RecognitionException {
@@ -159,6 +163,11 @@ public class DiceNotationParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DiceNotationParserListener ) ((DiceNotationParserListener)listener).exitNotation(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DiceNotationParserVisitor ) return ((DiceNotationParserVisitor<? extends T>)visitor).visitNotation(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -227,6 +236,11 @@ public class DiceNotationParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DiceNotationParserListener ) ((DiceNotationParserListener)listener).exitAddOp(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DiceNotationParserVisitor ) return ((DiceNotationParserVisitor<? extends T>)visitor).visitAddOp(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final AddOpContext addOp() throws RecognitionException {
@@ -290,6 +304,11 @@ public class DiceNotationParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DiceNotationParserListener ) ((DiceNotationParserListener)listener).exitMultOp(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DiceNotationParserVisitor ) return ((DiceNotationParserVisitor<? extends T>)visitor).visitMultOp(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -355,6 +374,11 @@ public class DiceNotationParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DiceNotationParserListener ) ((DiceNotationParserListener)listener).exitOperand(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DiceNotationParserVisitor ) return ((DiceNotationParserVisitor<? extends T>)visitor).visitOperand(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -423,6 +447,11 @@ public class DiceNotationParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DiceNotationParserListener ) ((DiceNotationParserListener)listener).exitDice(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DiceNotationParserVisitor ) return ((DiceNotationParserVisitor<? extends T>)visitor).visitDice(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final DiceContext dice() throws RecognitionException {
@@ -484,6 +513,11 @@ public class DiceNotationParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof DiceNotationParserListener ) ((DiceNotationParserListener)listener).exitNumber(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof DiceNotationParserVisitor ) return ((DiceNotationParserVisitor<? extends T>)visitor).visitNumber(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
