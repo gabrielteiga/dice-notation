@@ -35,9 +35,6 @@ options {
 
 file_
     : notation EOF
-    {
-        System.out.println("Hello there!");
-    }
     ;
 
 notation
