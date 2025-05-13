@@ -34,7 +34,7 @@ public class Game {
         } else if (score2 > score1) {
             winner = player2;
         } else {
-            winner = null; // It's a tie
+            winner = null;
         }
     }
 
